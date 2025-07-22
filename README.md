@@ -1,6 +1,6 @@
 # CV Creator Application
 
-CV Creator Web App made for the [Project: CV Application of The Odin Project](https://www.theodinproject.com/lessons/node-path-react-new-cv-application)
+CV Builder Web App made for the [Project: CV Application of The Odin Project](https://www.theodinproject.com/lessons/node-path-react-new-cv-application)
 
 Live Preview:
 
