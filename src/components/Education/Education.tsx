@@ -1,4 +1,6 @@
 import { useState } from "react";
+import InputEducation from "./InputEducation";
+import OutputEducation from "./OutputEducation";
 
 interface EducationObject {
   id: string;
@@ -6,81 +8,6 @@ interface EducationObject {
   degree: string;
   startDate: string;
   endDate: string;
-}
-
-interface InputEducationProps {
-  education: EducationObject;
-  handleChange: (key: keyof EducationObject, value: string) => void;
-  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-}
-
-function InputEducation({
-  education,
-  handleChange,
-  handleSubmit,
-}: InputEducationProps) {
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>School Name: </label>
-        <input
-          type="text"
-          required
-          value={education.schoolName}
-          onChange={(event) => handleChange("schoolName", event.target.value)}
-        />
-      </div>
-
-      <div>
-        <label>Degree: </label>
-        <input
-          type="text"
-          required
-          value={education.degree}
-          onChange={(event) => handleChange("degree", event.target.value)}
-        />
-      </div>
-
-      <div>
-        <label>Start Date: </label>
-        <input
-          type="text"
-          value={education.startDate}
-          onChange={(event) => handleChange("startDate", event.target.value)}
-        />
-      </div>
-
-      <div>
-        <label>End Date: </label>
-        <input
-          type="text"
-          value={education.endDate}
-          onChange={(event) => handleChange("endDate", event.target.value)}
-        />
-      </div>
-
-      <button type="submit">Save</button>
-    </form>
-  );
-}
-
-interface OutputEducationProps {
-  educationList: EducationObject[];
-}
-
-function OutputEducation({ educationList }: OutputEducationProps) {
-  return (
-    <div>
-      {educationList.map((education) => (
-        <div>
-          <p>{education.schoolName}</p>
-          <p>{education.degree}</p>
-          <p>{education.startDate}</p>
-          <p>{education.endDate}</p>
-        </div>
-      ))}
-    </div>
-  );
 }
 
 function Education() {
@@ -93,23 +20,7 @@ function Education() {
   });
   const [educationList, setEducationList] = useState<EducationObject[]>([]);
 
-  function handleChange(key: keyof EducationObject, value: string) {
-    setEducation((prevEducation) => ({ ...prevEducation, [key]: value }));
-  }
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    const newEducation = {
-      ...education,
-      id: crypto.randomUUID(),
-    };
-
-    setEducationList((prevEducationList) => [
-      ...prevEducationList,
-      newEducation,
-    ]);
-
+  function resetInputForm() {
     setEducation({
       id: "",
       schoolName: "",
@@ -119,18 +30,59 @@ function Education() {
     });
   }
 
+  function handleInput(key: keyof EducationObject, value: string) {
+    setEducation((prev) => ({ ...prev, [key]: value }));
+  }
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (education.id) {
+      setEducationList((prev) =>
+        prev.map((item) =>
+          item.id === education.id ? { ...item, ...education } : item
+        )
+      );
+    } else {
+      setEducationList((prev) => [
+        ...prev,
+        { ...education, id: crypto.randomUUID() },
+      ]);
+    }
+
+    resetInputForm();
+  }
+
+  function handleEdit(id: string) {
+    const item = educationList.find((e) => e.id === id);
+    if (!item) return;
+    setEducation(item);
+  }
+
+  function handleDelete(id: string) {
+    const updatedEducationList = educationList.filter((item) => item.id !== id);
+
+    setEducationList(updatedEducationList);
+    resetInputForm();
+  }
+
   return (
     <div>
       <h2>Education</h2>
       <InputEducation
         education={education}
-        handleChange={handleChange}
+        handleInput={handleInput}
         handleSubmit={handleSubmit}
+        resetInputForm={resetInputForm}
       />
-
-      <OutputEducation educationList={educationList} />
+      <OutputEducation
+        educationList={educationList}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+      />
     </div>
   );
 }
 
 export default Education;
+export type { EducationObject };
