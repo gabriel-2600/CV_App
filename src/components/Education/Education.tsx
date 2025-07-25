@@ -1,6 +1,6 @@
 import { useState } from "react";
 import InputEducation from "./InputEducation";
-import OutputEducation from "./OutputEducation";
+import EducationList from "./EducationList";
 
 interface EducationObject {
   id: string;
@@ -10,7 +10,12 @@ interface EducationObject {
   endDate: string;
 }
 
-function Education() {
+interface EducationProps {
+  educationList: EducationObject[];
+  setEducationList: (arg0: unknown) => void;
+}
+
+function Education({ educationList, setEducationList }: EducationProps) {
   const [education, setEducation] = useState<EducationObject>({
     id: "",
     schoolName: "",
@@ -18,7 +23,7 @@ function Education() {
     startDate: "",
     endDate: "",
   });
-  const [educationList, setEducationList] = useState<EducationObject[]>([]);
+  // const [educationList, setEducationList] = useState<EducationObject[]>([]);
 
   function resetInputForm() {
     setEducation({
@@ -38,13 +43,13 @@ function Education() {
     event.preventDefault();
 
     if (education.id) {
-      setEducationList((prev) =>
-        prev.map((item) =>
+      setEducationList((prev: EducationObject[]) =>
+        prev.map((item: { id: string }) =>
           item.id === education.id ? { ...item, ...education } : item
         )
       );
     } else {
-      setEducationList((prev) => [
+      setEducationList((prev: EducationObject[]) => [
         ...prev,
         { ...education, id: crypto.randomUUID() },
       ]);
@@ -75,7 +80,7 @@ function Education() {
         handleSubmit={handleSubmit}
         resetInputForm={resetInputForm}
       />
-      <OutputEducation
+      <EducationList
         educationList={educationList}
         handleEdit={handleEdit}
         handleDelete={handleDelete}

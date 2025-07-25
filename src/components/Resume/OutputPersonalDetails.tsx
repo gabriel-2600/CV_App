@@ -1,4 +1,4 @@
-import type { PersonalDetailsObject } from "./PersonalDetails";
+import type { PersonalDetailsObject } from "../PersonalDetails/PersonalDetails";
 
 interface OutputPersonalDetailsProps {
   details: PersonalDetailsObject;

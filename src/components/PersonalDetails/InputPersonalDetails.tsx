@@ -32,7 +32,7 @@ function InputPersonalDetails({
       <div>
         <label>Phone Number</label>
         <input
-          type="number"
+          type="text"
           value={details.phoneNumber}
           onChange={(event) => handleChange("phoneNumber", event.target.value)}
         />
