@@ -32,7 +32,7 @@ function DynamicForm<Type>({
           <input
             type={type}
             required={required}
-            value={formData[keyName as keyof typeof formData] ?? ""}
+            value={String(formData[keyName as keyof typeof formData])}
             onChange={(e) => onChange(keyName as keyof Type, e.target.value)}
           />
         </div>

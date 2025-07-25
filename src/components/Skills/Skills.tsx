@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type Dispatch, type SetStateAction } from "react";
 import InputSkills from "./InputSkills";
 import SkillsList from "./SkillsList";
 
@@ -9,7 +9,7 @@ interface SkillsObject {
 
 interface SkillsProps {
   skillsList: SkillsObject[];
-  setSkillsList: (arg0: unknown) => void;
+  setSkillsList: Dispatch<SetStateAction<SkillsObject[]>>;
 }
 
 function Skills({ skillsList, setSkillsList }: SkillsProps) {
@@ -17,7 +17,6 @@ function Skills({ skillsList, setSkillsList }: SkillsProps) {
     id: "",
     skillName: "",
   });
-  // const [skillsList, setSkillsList] = useState<SkillsObject[]>([]);
 
   function resetInputForm() {
     setSkill({

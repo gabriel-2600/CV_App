@@ -8,19 +8,19 @@ function OutputPersonalDetails({ details }: OutputPersonalDetailsProps) {
   return (
     <div>
       <div>
-        <p>Full Name: {details.fullName}</p>
+        <p>{details.fullName}</p>
       </div>
 
       <div>
-        <p>Email: {details.email}</p>
+        <p>{details.email}</p>
       </div>
 
       <div>
-        <p>Phone Number: {details.phoneNumber}</p>
+        <p>{details.phoneNumber}</p>
       </div>
 
       <div>
-        <p>Address: {details.address}</p>
+        <p> {details.address}</p>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 interface DisplayListProps<Type> {
-  list: Type[];
-  listKeys: string[];
+  list: (Type & { id: string })[];
+  listKeys: (keyof Type)[];
 }
 
 function DisplayList<Type>({ list, listKeys }: DisplayListProps<Type>) {
@@ -8,8 +8,8 @@ function DisplayList<Type>({ list, listKeys }: DisplayListProps<Type>) {
     <div>
       {list.map((listItem) => (
         <div key={listItem.id}>
-          {listKeys.map((keys) => (
-            <div key={keys}>{listItem[keys]}</div>
+          {listKeys.map((keyItem) => (
+            <div key={String(keyItem)}>{String(listItem[keyItem])}</div>
           ))}
         </div>
       ))}

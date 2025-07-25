@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type Dispatch, type SetStateAction } from "react";
 import InputExperience from "./InputExperience";
 import ExperienceList from "./ExperienceList";
 
@@ -14,7 +14,7 @@ interface ExperienceObject {
 
 interface ExperienceProps {
   experienceList: ExperienceObject[];
-  setExperienceList: (arg0: unknown) => void;
+  setExperienceList: Dispatch<SetStateAction<ExperienceObject[]>>;
 }
 
 function Experience({ experienceList, setExperienceList }: ExperienceProps) {
@@ -27,7 +27,6 @@ function Experience({ experienceList, setExperienceList }: ExperienceProps) {
     description: "",
     location: "",
   });
-  // const [experienceList, setExperienceList] = useState<ExperienceObject[]>([]);
 
   function resetInputForm() {
     setExperience({

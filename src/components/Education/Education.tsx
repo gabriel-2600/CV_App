@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type Dispatch, type SetStateAction } from "react";
 import InputEducation from "./InputEducation";
 import EducationList from "./EducationList";
 
@@ -12,7 +12,7 @@ interface EducationObject {
 
 interface EducationProps {
   educationList: EducationObject[];
-  setEducationList: (arg0: unknown) => void;
+  setEducationList: Dispatch<SetStateAction<EducationObject[]>>;
 }
 
 function Education({ educationList, setEducationList }: EducationProps) {
@@ -23,7 +23,6 @@ function Education({ educationList, setEducationList }: EducationProps) {
     startDate: "",
     endDate: "",
   });
-  // const [educationList, setEducationList] = useState<EducationObject[]>([]);
 
   function resetInputForm() {
     setEducation({
@@ -43,8 +42,8 @@ function Education({ educationList, setEducationList }: EducationProps) {
     event.preventDefault();
 
     if (education.id) {
-      setEducationList((prev: EducationObject[]) =>
-        prev.map((item: { id: string }) =>
+      setEducationList((prev) =>
+        prev.map((item) =>
           item.id === education.id ? { ...item, ...education } : item
         )
       );

@@ -1,6 +1,5 @@
-// import { useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import InputPersonalDetails from "./InputPersonalDetails";
-// import OutputPersonalDetails from "../Resume/OutputPersonalDetails";
 
 interface PersonalDetailsObject {
   fullName: string;
@@ -11,17 +10,10 @@ interface PersonalDetailsObject {
 
 interface PersonalDetailsProps {
   details: PersonalDetailsObject;
-  setDetails: (arg0: unknown) => void;
+  setDetails: Dispatch<SetStateAction<PersonalDetailsObject>>;
 }
 
 function PersonalDetails({ details, setDetails }: PersonalDetailsProps) {
-  // const [details, setDetails] = useState<PersonalDetailsObject>({
-  //   fullName: "",
-  //   email: "",
-  //   phoneNumber: "",
-  //   address: "",
-  // });
-
   function handleChange(key: keyof PersonalDetailsObject, value: string) {
     setDetails((prevDetails: PersonalDetailsObject) => ({
       ...prevDetails,
@@ -34,8 +26,6 @@ function PersonalDetails({ details, setDetails }: PersonalDetailsProps) {
       <h2>Personal Details</h2>
 
       <InputPersonalDetails details={details} handleChange={handleChange} />
-
-      {/* <OutputPersonalDetails details={details} /> */}
     </div>
   );
 }

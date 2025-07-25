@@ -19,14 +19,14 @@ function Resume({
   experienceList,
   skillsList,
 }: ResumeProps) {
-  const educationKeys: string[] = [
+  const educationKeys: (keyof EducationObject)[] = [
     "schoolName",
     "degree",
     "startDate",
     "endDate",
   ];
 
-  const experienceKeys: string[] = [
+  const experienceKeys: (keyof ExperienceObject)[] = [
     "companyName",
     "position",
     "startDate",
@@ -35,7 +35,7 @@ function Resume({
     "location",
   ];
 
-  const skillKeys: string[] = ["skillName"];
+  const skillKeys: (keyof SkillsObject)[] = ["skillName"];
 
   return (
     <div className="resume-container">
