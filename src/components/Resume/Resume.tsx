@@ -1,48 +1,44 @@
-import OutputPersonalDetails from "./OutputPersonalDetails.tsx";
-import DisplayList from "./DisplayList.tsx";
+import { useState } from "react";
 
-import type { PersonalDetailsObject } from "../PersonalDetails/PersonalDetails.tsx";
-import type { EducationObject } from "../Education/Education.tsx";
-import type { ExperienceObject } from "../Experience/Experience.tsx";
-import type { SkillsObject } from "../Skills/Skills.tsx";
+import PersonalDetails, {
+  type PersonalDetailsObject,
+} from "../PersonalDetails/PersonalDetails.tsx";
+import Education, { type EducationObject } from "../Education/Education.tsx";
+import Experience, {
+  type ExperienceObject,
+} from "../Experience/Experience.tsx";
+import Skills, { type SkillsObject } from "../Skills/Skills.tsx";
+import DisplayResume from "./DisplayResume.tsx";
 
-interface ResumeProps {
-  details: PersonalDetailsObject;
-  educationList: EducationObject[];
-  experienceList: ExperienceObject[];
-  skillsList: SkillsObject[];
-}
-
-function Resume({
-  details,
-  educationList,
-  experienceList,
-  skillsList,
-}: ResumeProps) {
-  const educationKeys: (keyof EducationObject)[] = [
-    "schoolName",
-    "degree",
-    "startDate",
-    "endDate",
-  ];
-
-  const experienceKeys: (keyof ExperienceObject)[] = [
-    "companyName",
-    "position",
-    "startDate",
-    "endDate",
-    "description",
-    "location",
-  ];
-
-  const skillKeys: (keyof SkillsObject)[] = ["skillName"];
+function Resume() {
+  const [details, setDetails] = useState<PersonalDetailsObject>({
+    fullName: "",
+    email: "",
+    phoneNumber: "",
+    address: "",
+  });
+  const [educationList, setEducationList] = useState<EducationObject[]>([]);
+  const [experienceList, setExperienceList] = useState<ExperienceObject[]>([]);
+  const [skillsList, setSkillsList] = useState<SkillsObject[]>([]);
 
   return (
-    <div className="resume-container">
-      <OutputPersonalDetails details={details} />
-      <DisplayList list={educationList} listKeys={educationKeys} />
-      <DisplayList list={experienceList} listKeys={experienceKeys} />
-      <DisplayList list={skillsList} listKeys={skillKeys} />
+    <div>
+      <PersonalDetails details={details} setDetails={setDetails} />
+      <Education
+        educationList={educationList}
+        setEducationList={setEducationList}
+      />
+      <Experience
+        experienceList={experienceList}
+        setExperienceList={setExperienceList}
+      />
+      <Skills skillsList={skillsList} setSkillsList={setSkillsList} />
+      <DisplayResume
+        details={details}
+        educationList={educationList}
+        experienceList={experienceList}
+        skillsList={skillsList}
+      />
     </div>
   );
 }
