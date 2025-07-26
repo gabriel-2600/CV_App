@@ -10,12 +10,6 @@ Tech Stack:
 - TypeScript
 - Tailwind
 
-Tools used:
-
-- Google Chrome
-- Visual Studio Code
-- Github
-
 Lessons Learned:
 
 Credits:
