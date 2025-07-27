@@ -19,31 +19,63 @@ function DisplayResume({
   experienceList,
   skillsList,
 }: DisplayResumeProps) {
-  const educationKeys: (keyof EducationObject)[] = [
-    "schoolName",
-    "degree",
-    "startDate",
-    "endDate",
-  ];
-
-  const experienceKeys: (keyof ExperienceObject)[] = [
-    "companyName",
-    "position",
-    "startDate",
-    "endDate",
-    "description",
-    "location",
-  ];
-
-  const skillKeys: (keyof SkillsObject)[] = ["skillName"];
-
   return (
-    <div className="resume-container">
+    <>
       <OutputPersonalDetails details={details} />
-      <DisplayList list={educationList} listKeys={educationKeys} />
-      <DisplayList list={experienceList} listKeys={experienceKeys} />
-      <DisplayList list={skillsList} listKeys={skillKeys} />
-    </div>
+
+      <DisplayList
+        label="EXPERIENCE"
+        list={experienceList}
+        renderItem={(item) => (
+          <>
+            <div className="flex justify-between">
+              <p className="font-bold">{item.position} </p>
+              <p>
+                {item.startDate} - {item.endDate}
+              </p>
+            </div>
+            <div className="flex justify-between mb-1">
+              <p>{item.companyName}</p>
+              <p>{item.location}</p>
+            </div>
+            <div>
+              <p>{item.description}</p>
+            </div>
+          </>
+        )}
+      />
+      <DisplayList
+        label="EDUCATION"
+        list={educationList}
+        renderItem={(item) => (
+          <>
+            <div className="flex justify-between ">
+              <p className="font-bold">{item.schoolName}</p>
+              <p>
+                {item.startDate} - {item.endDate}
+              </p>
+            </div>
+            <div>
+              <p>{item.degree}</p>
+            </div>
+          </>
+        )}
+      />
+
+      <DisplayList
+        label="SKILLS"
+        list={skillsList}
+        optionalstyle="flex"
+        renderItem={(item, index) => (
+          <>
+            <p>
+              {item.skillName}
+              {skillsList.length - 1 !== index && ",\u00A0"}
+            </p>
+          </>
+        )}
+      />
+    </>
   );
 }
 

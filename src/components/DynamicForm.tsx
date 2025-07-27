@@ -27,9 +27,11 @@ function DynamicForm<Type>({
   return (
     <form onSubmit={onSubmit}>
       {fields.map(({ keyName, label, required, type = "text" }) => (
-        <div key={keyName}>
-          <label>{label}: </label>
+        <div className="py-[5px]" key={keyName}>
+          <label htmlFor={label}>{label}: </label>
           <input
+            className="border-1 border-solid"
+            id={label}
             type={type}
             required={required}
             value={String(formData[keyName as keyof typeof formData])}

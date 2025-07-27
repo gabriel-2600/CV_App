@@ -7,20 +7,12 @@ interface OutputPersonalDetailsProps {
 function OutputPersonalDetails({ details }: OutputPersonalDetailsProps) {
   return (
     <div>
-      <div>
-        <p>{details.fullName}</p>
-      </div>
+      <p className="text-[40px] text-center">{details.fullName}</p>
 
-      <div>
-        <p>{details.email}</p>
-      </div>
-
-      <div>
-        <p>{details.phoneNumber}</p>
-      </div>
-
-      <div>
-        <p> {details.address}</p>
+      <div className="flex justify-center items-center  gap-[20px] text-[16px]">
+        <li className="list-none"> {details.address}</li>
+        <li>{details.phoneNumber}</li>
+        <li>{details.email}</li>
       </div>
     </div>
   );

@@ -1,18 +1,24 @@
 interface DisplayListProps<Type> {
+  label: string;
   list: (Type & { id: string })[];
-  listKeys: (keyof Type)[];
+  optionalstyle?: string;
+  renderItem: (item: Type & { id: string }, index?: number) => React.ReactNode;
 }
 
-function DisplayList<Type>({ list, listKeys }: DisplayListProps<Type>) {
+function DisplayList<Type>({
+  label,
+  list,
+  optionalstyle,
+  renderItem,
+}: DisplayListProps<Type>) {
   return (
-    <div>
-      {list.map((listItem) => (
-        <div key={listItem.id}>
-          {listKeys.map((keyItem) => (
-            <div key={String(keyItem)}>{String(listItem[keyItem])}</div>
-          ))}
-        </div>
-      ))}
+    <div className="py-[10px]">
+      <p className="border-b-1 font-bold py-1 mb-2">{label}</p>
+      <div className={optionalstyle}>
+        {list.map((listItem, index) => (
+          <div key={listItem.id}>{renderItem(listItem, index)}</div>
+        ))}
+      </div>
     </div>
   );
 }
