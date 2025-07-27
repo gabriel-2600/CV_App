@@ -22,8 +22,8 @@ function PersonalDetails({ details, setDetails }: PersonalDetailsProps) {
   }
 
   return (
-    <div>
-      <h2>Personal Details</h2>
+    <div className="bg-white p-5 rounded-lg ">
+      <h2 className="font-bold text-[25px]">Personal Details</h2>
 
       <InputPersonalDetails details={details} handleChange={handleChange} />
     </div>

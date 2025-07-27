@@ -9,12 +9,16 @@ function InputPersonalDetails({
   details,
   handleChange,
 }: InputPersonalDetailsProps) {
+  const divInputContainerStyling: string = "py-[5px] flex flex-col";
+  const inputStyling: string =
+    "bg-[#EBEDF3] border-solid rounded-sm p-2 text-[14px]";
+
   return (
     <form>
-      <div className="py-[5px]">
+      <div className={divInputContainerStyling}>
         <label htmlFor="full-name">Full Name</label>
         <input
-          className="border-1 border-solid"
+          className={inputStyling}
           id="full-name"
           type="text"
           value={details.fullName}
@@ -22,10 +26,10 @@ function InputPersonalDetails({
         />
       </div>
 
-      <div className="py-[5px]">
+      <div className={divInputContainerStyling}>
         <label htmlFor="email">Email</label>
         <input
-          className="border-1 border-solid"
+          className={inputStyling}
           id="email"
           type="text"
           value={details.email}
@@ -33,10 +37,10 @@ function InputPersonalDetails({
         />
       </div>
 
-      <div className="py-[5px]">
+      <div className={divInputContainerStyling}>
         <label htmlFor="phone-number">Phone Number</label>
         <input
-          className="border-1 border-solid"
+          className={inputStyling}
           id="phone-number"
           type="text"
           value={details.phoneNumber}
@@ -44,10 +48,10 @@ function InputPersonalDetails({
         />
       </div>
 
-      <div className="py-[5px]">
+      <div className={divInputContainerStyling}>
         <label htmlFor="address">Address</label>
         <input
-          className="border-1 border-solid"
+          className={inputStyling}
           id="address"
           type="text"
           value={details.address}

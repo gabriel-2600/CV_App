@@ -1,6 +1,6 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
 import InputEducation from "./InputEducation";
-import EducationList from "./EducationList";
+import DynamicList from "../DynamicList";
 
 interface EducationObject {
   id: string;
@@ -71,16 +71,18 @@ function Education({ educationList, setEducationList }: EducationProps) {
   }
 
   return (
-    <div>
-      <h2>Education</h2>
+    <div className="bg-white p-5 rounded-lg ">
+      <h2 className="font-bold text-[25px]">Education</h2>
       <InputEducation
         education={education}
         handleInput={handleInput}
         handleSubmit={handleSubmit}
         resetInputForm={resetInputForm}
       />
-      <EducationList
-        educationList={educationList}
+
+      <DynamicList
+        list={educationList}
+        listKey="schoolName"
         handleEdit={handleEdit}
         handleDelete={handleDelete}
       />

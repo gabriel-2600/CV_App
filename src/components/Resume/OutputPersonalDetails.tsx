@@ -9,10 +9,9 @@ function OutputPersonalDetails({ details }: OutputPersonalDetailsProps) {
     <div>
       <p className="text-[40px] text-center">{details.fullName}</p>
 
-      <div className="flex justify-center items-center  gap-[20px] text-[16px]">
-        <li className="list-none"> {details.address}</li>
-        <li>{details.phoneNumber}</li>
-        <li>{details.email}</li>
+      <div className="flex justify-center items-center gap-[10px] text-[16px]">
+        <p> {details.address}</p>•<p>{details.phoneNumber}</p>•
+        <p>{details.email}</p>
       </div>
     </div>
   );

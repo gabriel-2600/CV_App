@@ -1,6 +1,6 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
 import InputSkills from "./InputSkills";
-import SkillsList from "./SkillsList";
+import DynamicList from "../DynamicList";
 
 interface SkillsObject {
   id: string;
@@ -62,21 +62,24 @@ function Skills({ skillsList, setSkillsList }: SkillsProps) {
   }
 
   return (
-    <div>
-      <h2>Skills</h2>
-      <InputSkills
-        skills={skill}
-        handleInput={handleInput}
-        handleSubmit={handleSubmit}
-        resetInputForm={resetInputForm}
-      />
+    <>
+      <div className="bg-white p-5 rounded-lg ">
+        <h2 className="font-bold text-[25px]">Skills</h2>
+        <InputSkills
+          skills={skill}
+          handleInput={handleInput}
+          handleSubmit={handleSubmit}
+          resetInputForm={resetInputForm}
+        />
+      </div>
 
-      <SkillsList
-        skillsList={skillsList}
+      <DynamicList
+        list={skillsList}
+        listKey="skillName"
         handleEdit={handleEdit}
         handleDelete={handleDelete}
       />
-    </div>
+    </>
   );
 }
 

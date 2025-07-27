@@ -24,13 +24,16 @@ function DynamicForm<Type>({
   onCancel,
   showCancel,
 }: DynamicFormProps<Type>) {
+  const inputStyling: string =
+    "bg-[#EBEDF3] border-solid rounded-sm p-2 text-[14px]";
+
   return (
     <form onSubmit={onSubmit}>
       {fields.map(({ keyName, label, required, type = "text" }) => (
-        <div className="py-[5px]" key={keyName}>
+        <div className="py-[5px] flex flex-col" key={keyName}>
           <label htmlFor={label}>{label}: </label>
           <input
-            className="border-1 border-solid"
+            className={inputStyling}
             id={label}
             type={type}
             required={required}

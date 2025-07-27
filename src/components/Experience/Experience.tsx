@@ -1,6 +1,6 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
 import InputExperience from "./InputExperience";
-import ExperienceList from "./ExperienceList";
+import DynamicList from "../DynamicList";
 
 interface ExperienceObject {
   id: string;
@@ -79,8 +79,8 @@ function Experience({ experienceList, setExperienceList }: ExperienceProps) {
   }
 
   return (
-    <div>
-      <h2>Experience</h2>
+    <div className="bg-white p-5 rounded-lg ">
+      <h2 className="font-bold text-[25px]">Experience</h2>
       <InputExperience
         experience={experience}
         handleInput={handleInput}
@@ -88,8 +88,9 @@ function Experience({ experienceList, setExperienceList }: ExperienceProps) {
         resetInputForm={resetInputForm}
       />
 
-      <ExperienceList
-        experienceList={experienceList}
+      <DynamicList
+        list={experienceList}
+        listKey="companyName"
         handleEdit={handleEdit}
         handleDelete={handleDelete}
       />
