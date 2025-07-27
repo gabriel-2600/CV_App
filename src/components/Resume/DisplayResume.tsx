@@ -38,8 +38,8 @@ function DisplayResume({
               <p>{item.companyName}</p>
               <p>{item.location}</p>
             </div>
-            <div>
-              <p>{item.description}</p>
+            <div className="flex">
+              <p className="text-wrap">{item.description}</p>
             </div>
           </>
         )}
@@ -55,7 +55,7 @@ function DisplayResume({
                 {item.startDate} - {item.endDate}
               </p>
             </div>
-            <div>
+            <div className="flex">
               <p>{item.degree}</p>
             </div>
           </>
@@ -65,7 +65,7 @@ function DisplayResume({
       <DisplayList
         label="SKILLS"
         list={skillsList}
-        optionalstyle="flex"
+        optionalstyle="flex flex-wrap"
         renderItem={(item, index) => (
           <>
             <p>

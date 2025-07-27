@@ -7,6 +7,7 @@ interface InputEducationProps {
   handleInput: (key: keyof EducationObject, value: string) => void;
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   resetInputForm: () => void;
+  handleDelete: (id: string) => void;
 }
 
 function InputEducation({
@@ -14,6 +15,7 @@ function InputEducation({
   handleInput,
   handleSubmit,
   resetInputForm,
+  handleDelete,
 }: InputEducationProps) {
   const educationField: FieldConfig[] = [
     { keyName: "schoolName", label: "School Name", required: true },
@@ -30,6 +32,8 @@ function InputEducation({
       onSubmit={handleSubmit}
       onCancel={resetInputForm}
       showCancel={!!education.id}
+      onDelete={handleDelete}
+      showDelete={!!education.id}
     />
   );
 }

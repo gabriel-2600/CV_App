@@ -7,6 +7,7 @@ interface InputSkillsProps {
   handleInput: (key: keyof SkillsObject, value: string) => void;
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   resetInputForm: () => void;
+  handleDelete: (id: string) => void;
 }
 
 function InputSkills({
@@ -14,6 +15,7 @@ function InputSkills({
   handleInput,
   handleSubmit,
   resetInputForm,
+  handleDelete,
 }: InputSkillsProps) {
   const skillsField: FieldConfig[] = [
     { keyName: "skillName", label: "Skill", required: true },
@@ -27,6 +29,8 @@ function InputSkills({
       onSubmit={handleSubmit}
       onCancel={resetInputForm}
       showCancel={!!skills.id}
+      onDelete={handleDelete}
+      showDelete={!!skills.id}
     />
   );
 }

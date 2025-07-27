@@ -2,27 +2,24 @@ interface DynamicListProps<T extends { id: string }> {
   list: T[];
   listKey: keyof T;
   handleEdit: (id: string) => void;
-  handleDelete: (id: string) => void;
 }
 
 function DynamicList<T extends { id: string }>({
   list,
   listKey,
   handleEdit,
-  handleDelete,
 }: DynamicListProps<T>) {
   return (
-    <div>
+    <div className="rounded-md flex flex-col gap-[10px] p-1 mt-6 overflow-auto h-40">
       {list.map((listItem) => (
-        <div key={listItem.id} id={listItem.id}>
-          <p onClick={() => handleEdit(listItem.id)}>
-            {String(listItem[listKey])}
-          </p>
-
-          <button type="button" onClick={() => handleDelete(listItem.id)}>
-            Delete
-          </button>
-        </div>
+        <button
+          className="rounded-md flex justify-center items-centerd p-2 bg-[#bdc4fe] font-semibold"
+          key={listItem.id}
+          id={listItem.id}
+          onClick={() => handleEdit(listItem.id)}
+        >
+          {String(listItem[listKey])}
+        </button>
       ))}
     </div>
   );

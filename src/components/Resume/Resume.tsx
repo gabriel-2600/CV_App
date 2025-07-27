@@ -78,8 +78,8 @@ function Resume() {
   ]);
 
   return (
-    <main className="flex ">
-      <section className="p-[40px]">
+    <main className="flex p-[40px] gap-[20px]">
+      <section className="flex flex-col flex-1 gap-[20px]">
         <PersonalDetails details={details} setDetails={setDetails} />
         <Education
           educationList={educationList}
@@ -92,8 +92,8 @@ function Resume() {
         <Skills skillsList={skillsList} setSkillsList={setSkillsList} />
       </section>
 
-      <section className="p-[40px]">
-        <div className=" bg-white border-1 border-gray-300 p-[60px] max-w-[936px]">
+      <section className="w-[850px] flex-initial">
+        <div className=" bg-white border-1 border-gray-300 p-[60px] h-[1176px]  flex flex-col">
           <DisplayResume
             details={details}
             experienceList={experienceList}

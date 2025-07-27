@@ -8,12 +8,14 @@ interface FieldConfig {
 }
 
 interface DynamicFormProps<Type> {
-  formData: Type;
+  formData: Type & { id: string };
   fields: FieldConfig[];
   onChange: (key: keyof Type, value: string) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   onCancel?: () => void;
   showCancel?: boolean;
+  onDelete: (id: string) => void;
+  showDelete?: boolean;
 }
 
 function DynamicForm<Type>({
@@ -23,6 +25,8 @@ function DynamicForm<Type>({
   onSubmit,
   onCancel,
   showCancel,
+  onDelete,
+  showDelete,
 }: DynamicFormProps<Type>) {
   const inputStyling: string =
     "bg-[#EBEDF3] border-solid rounded-sm p-2 text-[14px]";
@@ -43,12 +47,41 @@ function DynamicForm<Type>({
         </div>
       ))}
 
-      <button type="submit">Add</button>
-      {showCancel && onCancel && (
-        <button type="button" onClick={onCancel}>
-          Cancel
-        </button>
-      )}
+      <div className="flex flex-wrap gap-2 py-2">
+        {showCancel ? (
+          <button
+            className="w-20 rounded-md  bg-[#26c245] text-white"
+            type="submit"
+          >
+            Save
+          </button>
+        ) : (
+          <button
+            className="w-20 rounded-md  bg-[#26c245] text-white"
+            type="submit"
+          >
+            Add
+          </button>
+        )}
+        {showCancel && onCancel && (
+          <button
+            type="button"
+            className="w-20 rounded-md  bg-[#d9dae3]"
+            onClick={onCancel}
+          >
+            Cancel
+          </button>
+        )}
+
+        {showDelete && onDelete && (
+          <button
+            className="w-20 rounded-md  bg-[#FF4545]"
+            onClick={() => onDelete(formData["id"])}
+          >
+            Delete
+          </button>
+        )}
+      </div>
     </form>
   );
 }

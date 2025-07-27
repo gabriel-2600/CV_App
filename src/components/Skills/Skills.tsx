@@ -70,15 +70,15 @@ function Skills({ skillsList, setSkillsList }: SkillsProps) {
           handleInput={handleInput}
           handleSubmit={handleSubmit}
           resetInputForm={resetInputForm}
+          handleDelete={handleDelete}
+        />
+
+        <DynamicList
+          list={skillsList}
+          listKey="skillName"
+          handleEdit={handleEdit}
         />
       </div>
-
-      <DynamicList
-        list={skillsList}
-        listKey="skillName"
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-      />
     </>
   );
 }

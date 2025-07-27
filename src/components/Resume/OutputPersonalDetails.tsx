@@ -9,7 +9,7 @@ function OutputPersonalDetails({ details }: OutputPersonalDetailsProps) {
     <div>
       <p className="text-[40px] text-center">{details.fullName}</p>
 
-      <div className="flex justify-center items-center gap-[10px] text-[16px]">
+      <div className="flex justify-center items-center gap-[10px] flex-wrap text-[16px]">
         <p> {details.address}</p>•<p>{details.phoneNumber}</p>•
         <p>{details.email}</p>
       </div>

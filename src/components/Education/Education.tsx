@@ -78,13 +78,13 @@ function Education({ educationList, setEducationList }: EducationProps) {
         handleInput={handleInput}
         handleSubmit={handleSubmit}
         resetInputForm={resetInputForm}
+        handleDelete={handleDelete}
       />
 
       <DynamicList
         list={educationList}
         listKey="schoolName"
         handleEdit={handleEdit}
-        handleDelete={handleDelete}
       />
     </div>
   );

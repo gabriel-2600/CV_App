@@ -86,13 +86,13 @@ function Experience({ experienceList, setExperienceList }: ExperienceProps) {
         handleInput={handleInput}
         handleSubmit={handleSubmit}
         resetInputForm={resetInputForm}
+        handleDelete={handleDelete}
       />
 
       <DynamicList
         list={experienceList}
         listKey="companyName"
         handleEdit={handleEdit}
-        handleDelete={handleDelete}
       />
     </div>
   );

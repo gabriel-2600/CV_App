@@ -7,6 +7,7 @@ interface InputExperienceProps {
   handleInput: (key: keyof ExperienceObject, value: string) => void;
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   resetInputForm: () => void;
+  handleDelete: (id: string) => void;
 }
 
 function InputExperience({
@@ -14,6 +15,7 @@ function InputExperience({
   handleInput,
   handleSubmit,
   resetInputForm,
+  handleDelete,
 }: InputExperienceProps) {
   const experienceField: FieldConfig[] = [
     { keyName: "companyName", label: "Company Name", required: true },
@@ -32,6 +34,8 @@ function InputExperience({
       onSubmit={handleSubmit}
       onCancel={resetInputForm}
       showCancel={!!experience.id}
+      onDelete={handleDelete}
+      showDelete={!!experience.id}
     />
   );
 }
