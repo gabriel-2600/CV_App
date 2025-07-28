@@ -16,7 +16,9 @@ function DisplayList<Type>({
       <p className="border-b-1 font-bold py-1 mb-2">{label}</p>
       <div className={optionalstyle}>
         {list.map((listItem, index) => (
-          <div key={listItem.id}>{renderItem(listItem, index)}</div>
+          <div className="mb-2" key={listItem.id}>
+            {renderItem(listItem, index)}
+          </div>
         ))}
       </div>
     </div>

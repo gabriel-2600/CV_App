@@ -30,11 +30,11 @@ function DisplayResume({
           <>
             <div className="flex justify-between">
               <p className="font-bold">{item.position} </p>
-              <p>
+              <p className="font-bold">
                 {item.startDate} - {item.endDate}
               </p>
             </div>
-            <div className="flex justify-between mb-1">
+            <div className="flex justify-between">
               <p>{item.companyName}</p>
               <p>{item.location}</p>
             </div>
@@ -51,7 +51,7 @@ function DisplayResume({
           <>
             <div className="flex justify-between ">
               <p className="font-bold">{item.schoolName}</p>
-              <p>
+              <p className="font-bold">
                 {item.startDate} - {item.endDate}
               </p>
             </div>

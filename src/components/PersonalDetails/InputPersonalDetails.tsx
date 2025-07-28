@@ -27,13 +27,13 @@ function InputPersonalDetails({
       </div>
 
       <div className={divInputContainerStyling}>
-        <label htmlFor="email">Email</label>
+        <label htmlFor="address">Address</label>
         <input
           className={inputStyling}
-          id="email"
+          id="address"
           type="text"
-          value={details.email}
-          onChange={(event) => handleChange("email", event.target.value)}
+          value={details.address}
+          onChange={(event) => handleChange("address", event.target.value)}
         />
       </div>
 
@@ -49,13 +49,13 @@ function InputPersonalDetails({
       </div>
 
       <div className={divInputContainerStyling}>
-        <label htmlFor="address">Address</label>
+        <label htmlFor="email">Email</label>
         <input
           className={inputStyling}
-          id="address"
+          id="email"
           type="text"
-          value={details.address}
-          onChange={(event) => handleChange("address", event.target.value)}
+          value={details.email}
+          onChange={(event) => handleChange("email", event.target.value)}
         />
       </div>
     </form>
