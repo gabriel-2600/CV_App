@@ -1,6 +1,6 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
 import InputSkills from "./InputSkills";
-import DynamicList from "../DynamicList";
+import DynamicList from "../utilities/DynamicList";
 
 interface SkillsObject {
   id: string;
@@ -10,9 +10,16 @@ interface SkillsObject {
 interface SkillsProps {
   skillsList: SkillsObject[];
   setSkillsList: Dispatch<SetStateAction<SkillsObject[]>>;
+  displayNumber: number;
+  setDisplayNumber: Dispatch<SetStateAction<number>>;
 }
 
-function Skills({ skillsList, setSkillsList }: SkillsProps) {
+function Skills({
+  skillsList,
+  setSkillsList,
+  displayNumber,
+  setDisplayNumber,
+}: SkillsProps) {
   const [skill, setSkill] = useState<SkillsObject>({
     id: "",
     skillName: "",
@@ -61,10 +68,27 @@ function Skills({ skillsList, setSkillsList }: SkillsProps) {
     resetInputForm();
   }
 
+  function changeDisplay(): void {
+    if (displayNumber === 2) {
+      setDisplayNumber(4);
+    } else {
+      setDisplayNumber(2);
+    }
+  }
+
   return (
     <>
       <div className="bg-white p-5 rounded-lg ">
-        <h2 className="font-bold text-[25px]">Skills</h2>
+        <div className="flex justify-between ">
+          <h2 className="font-bold text-[25px]">Skills</h2>
+          <button
+            className="px-3  rounded-md  bg-[#d9dae3]"
+            onClick={changeDisplay}
+          >
+            ^
+          </button>
+        </div>
+
         <InputSkills
           skills={skill}
           handleInput={handleInput}

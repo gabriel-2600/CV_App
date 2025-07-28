@@ -33,31 +33,50 @@ function DynamicForm<Type>({
 
   return (
     <form onSubmit={onSubmit}>
-      {fields.map(({ keyName, label, required, type = "text" }) => (
-        <div className="py-[5px] flex flex-col" key={keyName}>
-          <label htmlFor={label}>{label}: </label>
-          <input
-            className={inputStyling}
-            id={label}
-            type={type}
-            required={required}
-            value={String(formData[keyName as keyof typeof formData])}
-            onChange={(e) => onChange(keyName as keyof Type, e.target.value)}
-          />
-        </div>
-      ))}
+      {fields.map(({ keyName, label, required, type = "text" }) => {
+        const isDescription: boolean = keyName === "description";
+
+        return (
+          <div className="py-[5px] flex flex-col" key={keyName}>
+            <label htmlFor={label}>{label}</label>
+
+            {isDescription ? (
+              <textarea
+                className={inputStyling}
+                id={label}
+                required={required}
+                value={String(formData[keyName as keyof typeof formData])}
+                onChange={(e) =>
+                  onChange(keyName as keyof Type, e.target.value)
+                }
+              />
+            ) : (
+              <input
+                className={inputStyling}
+                id={label}
+                type={type}
+                required={required}
+                value={String(formData[keyName as keyof typeof formData])}
+                onChange={(e) =>
+                  onChange(keyName as keyof Type, e.target.value)
+                }
+              />
+            )}
+          </div>
+        );
+      })}
 
       <div className="flex flex-wrap gap-2 py-2">
         {showCancel ? (
           <button
-            className="w-20 rounded-md  bg-[#26c245] text-white"
+            className="w-15 rounded-md  bg-[#26c245] text-white"
             type="submit"
           >
             Save
           </button>
         ) : (
           <button
-            className="w-20 rounded-md  bg-[#26c245] text-white"
+            className="w-15 rounded-md  bg-[#26c245] text-white"
             type="submit"
           >
             Add
@@ -66,7 +85,7 @@ function DynamicForm<Type>({
         {showCancel && onCancel && (
           <button
             type="button"
-            className="w-20 rounded-md  bg-[#d9dae3]"
+            className="w-15 rounded-md  bg-[#d9dae3]"
             onClick={onCancel}
           >
             Cancel
@@ -75,7 +94,7 @@ function DynamicForm<Type>({
 
         {showDelete && onDelete && (
           <button
-            className="w-20 rounded-md  bg-[#FF4545]"
+            className="w-15 rounded-md  bg-[#FF4545]"
             onClick={() => onDelete(formData["id"])}
           >
             Delete

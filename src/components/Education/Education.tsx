@@ -1,6 +1,6 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
 import InputEducation from "./InputEducation";
-import DynamicList from "../DynamicList";
+import DynamicList from "../utilities/DynamicList";
 
 interface EducationObject {
   id: string;
@@ -13,9 +13,16 @@ interface EducationObject {
 interface EducationProps {
   educationList: EducationObject[];
   setEducationList: Dispatch<SetStateAction<EducationObject[]>>;
+  displayNumber: number;
+  setDisplayNumber: Dispatch<SetStateAction<number>>;
 }
 
-function Education({ educationList, setEducationList }: EducationProps) {
+function Education({
+  educationList,
+  setEducationList,
+  displayNumber,
+  setDisplayNumber,
+}: EducationProps) {
   const [education, setEducation] = useState<EducationObject>({
     id: "",
     schoolName: "",
@@ -34,7 +41,7 @@ function Education({ educationList, setEducationList }: EducationProps) {
     });
   }
 
-  function handleInput(key: keyof EducationObject, value: string) {
+  function handleInput(key: keyof EducationObject, value: string): void {
     setEducation((prev) => ({ ...prev, [key]: value }));
   }
 
@@ -57,22 +64,39 @@ function Education({ educationList, setEducationList }: EducationProps) {
     resetInputForm();
   }
 
-  function handleEdit(id: string) {
+  function handleEdit(id: string): void {
     const item = educationList.find((e) => e.id === id);
     if (!item) return;
     setEducation(item);
   }
 
-  function handleDelete(id: string) {
+  function handleDelete(id: string): void {
     const updatedEducationList = educationList.filter((item) => item.id !== id);
 
     setEducationList(updatedEducationList);
     resetInputForm();
   }
 
+  function changeDisplay(): void {
+    if (displayNumber === 1) {
+      setDisplayNumber(4);
+    } else {
+      setDisplayNumber(1);
+    }
+  }
+
   return (
     <div className="bg-white p-5 rounded-lg ">
-      <h2 className="font-bold text-[25px]">Education</h2>
+      <div className="flex justify-between ">
+        <h2 className="font-bold text-[25px]">Education</h2>
+        <button
+          className="px-3  rounded-md  bg-[#d9dae3]"
+          onClick={changeDisplay}
+        >
+          ^
+        </button>
+      </div>
+
       <InputEducation
         education={education}
         handleInput={handleInput}

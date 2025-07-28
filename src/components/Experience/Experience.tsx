@@ -1,6 +1,6 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
 import InputExperience from "./InputExperience";
-import DynamicList from "../DynamicList";
+import DynamicList from "../utilities/DynamicList";
 
 interface ExperienceObject {
   id: string;
@@ -15,9 +15,16 @@ interface ExperienceObject {
 interface ExperienceProps {
   experienceList: ExperienceObject[];
   setExperienceList: Dispatch<SetStateAction<ExperienceObject[]>>;
+  displayNumber: number;
+  setDisplayNumber: Dispatch<SetStateAction<number>>;
 }
 
-function Experience({ experienceList, setExperienceList }: ExperienceProps) {
+function Experience({
+  experienceList,
+  setExperienceList,
+  displayNumber,
+  setDisplayNumber,
+}: ExperienceProps) {
   const [experience, setExperience] = useState<ExperienceObject>({
     id: "",
     companyName: "",
@@ -78,22 +85,41 @@ function Experience({ experienceList, setExperienceList }: ExperienceProps) {
     resetInputForm();
   }
 
+  function changeDisplay(): void {
+    if (displayNumber === 0) {
+      setDisplayNumber(4);
+    } else {
+      setDisplayNumber(0);
+    }
+  }
+
   return (
     <div className="bg-white p-5 rounded-lg ">
-      <h2 className="font-bold text-[25px]">Experience</h2>
-      <InputExperience
-        experience={experience}
-        handleInput={handleInput}
-        handleSubmit={handleSubmit}
-        resetInputForm={resetInputForm}
-        handleDelete={handleDelete}
-      />
+      <div className="flex justify-between ">
+        <h2 className="font-bold text-[25px]">Experience</h2>
+        <button
+          className="px-3  rounded-md  bg-[#d9dae3]"
+          onClick={changeDisplay}
+        >
+          ^
+        </button>
+      </div>
 
-      <DynamicList
-        list={experienceList}
-        listKey="companyName"
-        handleEdit={handleEdit}
-      />
+      <div>
+        <InputExperience
+          experience={experience}
+          handleInput={handleInput}
+          handleSubmit={handleSubmit}
+          resetInputForm={resetInputForm}
+          handleDelete={handleDelete}
+        />
+
+        <DynamicList
+          list={experienceList}
+          listKey="companyName"
+          handleEdit={handleEdit}
+        />
+      </div>
     </div>
   );
 }

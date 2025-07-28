@@ -1,6 +1,6 @@
 import type { EducationObject } from "./Education";
-import DynamicForm from "../DynamicForm";
-import type { FieldConfig } from "../DynamicForm";
+import DynamicForm from "../utilities/DynamicForm";
+import type { FieldConfig } from "../utilities/DynamicForm";
 
 interface InputEducationProps {
   education: EducationObject;

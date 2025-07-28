@@ -10,7 +10,7 @@ function DynamicList<T extends { id: string }>({
   handleEdit,
 }: DynamicListProps<T>) {
   return (
-    <div className="rounded-md flex flex-col gap-[10px] p-1 mt-6 overflow-auto h-40">
+    <div className="rounded-md flex flex-col gap-[10px] p-1 mt-6 overflow-auto max-h-40">
       {list.map((listItem) => (
         <button
           className="rounded-md flex justify-center items-centerd p-2 bg-[#bdc4fe] font-semibold"

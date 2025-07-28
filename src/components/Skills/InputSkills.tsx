@@ -1,6 +1,6 @@
 import type { SkillsObject } from "./Skills";
-import DynamicForm from "../DynamicForm";
-import type { FieldConfig } from "../DynamicForm";
+import DynamicForm from "../utilities/DynamicForm";
+import type { FieldConfig } from "../utilities/DynamicForm";
 
 interface InputSkillsProps {
   skills: SkillsObject;
