@@ -10,7 +10,12 @@ Features
 
 - Users can input their personal details, experiences, education and skills
 - The resume follows the Harvard Resume Template
-- Responsive web design
+- Resume can be downloaded as PDF file
+- Responsive web design (available for mobile)
+
+Limitations
+
+- Only one page
 
 Tech Stack:
 
@@ -18,14 +23,11 @@ Tech Stack:
 - TypeScript
 - Tailwind
 
-Tools:
-
-- html2canvas
-- jspdf
-
 Lessons Learned:
 
 - Learned to use React, TypeScript and Tailwind
 - Learned proper state management in React
+- Implemented html2canvas and jspdf to make the component downloadable as pdf
 
 Credits:
+[Flaticon](https://www.flaticon.com/)
