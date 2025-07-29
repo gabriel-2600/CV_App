@@ -30,7 +30,6 @@ function InputSkills({
       onCancel={resetInputForm}
       showCancel={!!skills.id}
       onDelete={handleDelete}
-      showDelete={!!skills.id}
     />
   );
 }

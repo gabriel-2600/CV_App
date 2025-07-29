@@ -33,7 +33,6 @@ function InputEducation({
       onCancel={resetInputForm}
       showCancel={!!education.id}
       onDelete={handleDelete}
-      showDelete={!!education.id}
     />
   );
 }

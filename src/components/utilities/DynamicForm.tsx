@@ -15,7 +15,6 @@ interface DynamicFormProps<Type> {
   onCancel?: () => void;
   showCancel?: boolean;
   onDelete: (id: string) => void;
-  showDelete?: boolean;
 }
 
 function DynamicForm<Type>({
@@ -26,7 +25,6 @@ function DynamicForm<Type>({
   onCancel,
   showCancel,
   onDelete,
-  showDelete,
 }: DynamicFormProps<Type>) {
   const inputStyling: string =
     "bg-[#EBEDF3] border-solid rounded-sm p-2 text-[14px]";
@@ -66,7 +64,7 @@ function DynamicForm<Type>({
         );
       })}
 
-      <div className="flex flex-wrap gap-2 py-2">
+      <div className="flex flex-wrap gap-5 py-2">
         {showCancel ? (
           <button
             className="w-15 rounded-md  bg-[#26c245] text-white"
@@ -83,22 +81,22 @@ function DynamicForm<Type>({
           </button>
         )}
         {showCancel && onCancel && (
-          <button
-            type="button"
-            className="w-15 rounded-md  bg-[#d9dae3]"
-            onClick={onCancel}
-          >
-            Cancel
-          </button>
-        )}
+          <>
+            <button
+              type="button"
+              className="w-15 rounded-md  bg-[#d9dae3]"
+              onClick={onCancel}
+            >
+              Cancel
+            </button>
 
-        {showDelete && onDelete && (
-          <button
-            className="w-15 rounded-md  bg-[#FF4545]"
-            onClick={() => onDelete(formData["id"])}
-          >
-            Delete
-          </button>
+            <button
+              className="w-15 rounded-md  bg-[#FF4545]"
+              onClick={() => onDelete(formData["id"])}
+            >
+              Delete
+            </button>
+          </>
         )}
       </div>
     </form>

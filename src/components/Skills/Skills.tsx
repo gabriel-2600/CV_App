@@ -1,6 +1,8 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
 import InputSkills from "./InputSkills";
 import DynamicList from "../utilities/DynamicList";
+import SectionHeader from "../utilities/SectionHeader";
+import up from "../../assets/up.png";
 
 interface SkillsObject {
   id: string;
@@ -68,26 +70,16 @@ function Skills({
     resetInputForm();
   }
 
-  function changeDisplay(): void {
-    if (displayNumber === 2) {
-      setDisplayNumber(4);
-    } else {
-      setDisplayNumber(2);
-    }
-  }
-
   return (
     <>
       <div className="bg-white p-5 rounded-lg ">
-        <div className="flex justify-between ">
-          <h2 className="font-bold text-[25px]">Skills</h2>
-          <button
-            className="px-3  rounded-md  bg-[#d9dae3]"
-            onClick={changeDisplay}
-          >
-            ^
-          </button>
-        </div>
+        <SectionHeader
+          label="Skills"
+          number={2}
+          image={up}
+          displayNumber={displayNumber}
+          setDisplayNumber={setDisplayNumber}
+        />
 
         <InputSkills
           skills={skill}

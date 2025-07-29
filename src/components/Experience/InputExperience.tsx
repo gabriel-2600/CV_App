@@ -35,7 +35,6 @@ function InputExperience({
       onCancel={resetInputForm}
       showCancel={!!experience.id}
       onDelete={handleDelete}
-      showDelete={!!experience.id}
     />
   );
 }

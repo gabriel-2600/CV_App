@@ -1,4 +1,6 @@
 import { useState } from "react";
+import React from "react";
+import html2canvas from "html2canvas";
 
 import PersonalDetails, {
   type PersonalDetailsObject,
@@ -9,6 +11,10 @@ import Experience, {
 } from "../Experience/Experience.tsx";
 import Skills, { type SkillsObject } from "../Skills/Skills.tsx";
 import DisplayResume from "./DisplayResume.tsx";
+import SectionHeader from "../utilities/SectionHeader.tsx";
+
+import down from "../../assets/down.png";
+import jsPDF from "jspdf";
 
 function Resume() {
   const [details, setDetails] = useState<PersonalDetailsObject>({
@@ -78,14 +84,36 @@ function Resume() {
   ]);
 
   const [displayNumber, setDisplayNumber] = useState(4);
+  const printRef = React.useRef(null);
 
-  function changeDisplay(num: number): void {
-    setDisplayNumber(num);
-  }
+  const handleDownloadPDF = async () => {
+    const element = printRef.current;
+
+    if (!element) return;
+
+    const canvas = await html2canvas(element);
+    const data = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF({
+      orientation: "portrait",
+      unit: "px",
+      format: "a4",
+    });
+
+    const imgProperties = pdf.getImageProperties(data);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
+
+    console.log(pdfWidth);
+    console.log(pdfHeight);
+
+    pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
+    pdf.save("harvard-resume.pdf");
+  };
 
   return (
-    <main className="flex p-[40px] gap-[20px]">
-      <section className="flex flex-col flex-1 gap-[20px]">
+    <main className="flex p-[40px] gap-[20px] max-[1025px]:flex-col m">
+      <section className="flex flex-col  flex-1  gap-[20px]">
         <PersonalDetails details={details} setDetails={setDetails} />
 
         {displayNumber === 0 ? (
@@ -97,15 +125,13 @@ function Resume() {
           />
         ) : (
           <div className="bg-white p-5 rounded-lg ">
-            <div className="flex justify-between ">
-              <h2 className="font-bold text-[25px]">Experience</h2>
-              <button
-                className="px-3  rounded-md  bg-[#d9dae3]"
-                onClick={() => changeDisplay(0)}
-              >
-                ^
-              </button>
-            </div>
+            <SectionHeader
+              label="Experience"
+              number={0}
+              image={down}
+              displayNumber={displayNumber}
+              setDisplayNumber={setDisplayNumber}
+            />
           </div>
         )}
 
@@ -118,15 +144,13 @@ function Resume() {
           />
         ) : (
           <div className="bg-white p-5 rounded-lg ">
-            <div className="flex justify-between ">
-              <h2 className="font-bold text-[25px]">Education</h2>
-              <button
-                className="px-3  rounded-md  bg-[#d9dae3]"
-                onClick={() => changeDisplay(1)}
-              >
-                ^
-              </button>
-            </div>
+            <SectionHeader
+              label="Education"
+              number={1}
+              image={down}
+              displayNumber={displayNumber}
+              setDisplayNumber={setDisplayNumber}
+            />
           </div>
         )}
 
@@ -139,21 +163,26 @@ function Resume() {
           />
         ) : (
           <div className="bg-white p-5 rounded-lg ">
-            <div className="flex justify-between ">
-              <h2 className="font-bold text-[25px]">Skills</h2>
-              <button
-                className="px-3  rounded-md  bg-[#d9dae3]"
-                onClick={() => changeDisplay(2)}
-              >
-                ^
-              </button>
-            </div>
+            <SectionHeader
+              label="Skills"
+              number={2}
+              image={down}
+              displayNumber={displayNumber}
+              setDisplayNumber={setDisplayNumber}
+            />
           </div>
         )}
+
+        <button
+          className="rounded-md flex justify-center items-centerd p-2 bg-[#1c1c84] text-white font-semibold max-w-[200px]"
+          onClick={handleDownloadPDF}
+        >
+          Download Resume
+        </button>
       </section>
 
-      <section className="w-[850px] flex-initial">
-        <div className=" bg-white border-1 border-gray-300 p-[60px] h-[1180px]  flex flex-col">
+      <section className="max-w-[850px] max-[1025px]:self-center">
+        <div className=" bg-white py-[20px] px-[60px] h-[1180px]  flex flex-col ">
           <DisplayResume
             details={details}
             experienceList={experienceList}
@@ -162,6 +191,27 @@ function Resume() {
           />
         </div>
       </section>
+
+      <div style={{ position: "absolute", top: "-9999px", left: "-9999px" }}>
+        <div
+          ref={printRef}
+          style={{
+            width: "850px",
+            height: "1180px",
+            padding: "20px 60px",
+            backgroundColor: "white",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <DisplayResume
+            details={details}
+            experienceList={experienceList}
+            educationList={educationList}
+            skillsList={skillsList}
+          />
+        </div>
+      </div>
     </main>
   );
 }

@@ -1,6 +1,8 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
 import InputEducation from "./InputEducation";
 import DynamicList from "../utilities/DynamicList";
+import SectionHeader from "../utilities/SectionHeader";
+import up from "../../assets/up.png";
 
 interface EducationObject {
   id: string;
@@ -77,25 +79,15 @@ function Education({
     resetInputForm();
   }
 
-  function changeDisplay(): void {
-    if (displayNumber === 1) {
-      setDisplayNumber(4);
-    } else {
-      setDisplayNumber(1);
-    }
-  }
-
   return (
     <div className="bg-white p-5 rounded-lg ">
-      <div className="flex justify-between ">
-        <h2 className="font-bold text-[25px]">Education</h2>
-        <button
-          className="px-3  rounded-md  bg-[#d9dae3]"
-          onClick={changeDisplay}
-        >
-          ^
-        </button>
-      </div>
+      <SectionHeader
+        label="Education"
+        number={1}
+        image={up}
+        displayNumber={displayNumber}
+        setDisplayNumber={setDisplayNumber}
+      />
 
       <InputEducation
         education={education}
