@@ -11,7 +11,7 @@ Features
 - Users can input their personal details, experiences, education and skills
 - The resume follows the Harvard Resume Template
 - Resume can be downloaded as PDF file
-- Responsive web design (available for mobile)
+- Responsive web design (compatible for mobile)
 
 Limitations
 
