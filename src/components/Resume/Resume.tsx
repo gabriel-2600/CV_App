@@ -174,10 +174,10 @@ function Resume() {
         )}
 
         <button
-          className="rounded-md flex justify-center items-centerd p-2 bg-[#1c1c84] text-white font-semibold max-w-[200px]"
+          className="rounded-md flex justify-center items-centerd p-2 bg-[#1c1c84] text-white font-semibold max-w-[250px]"
           onClick={handleDownloadPDF}
         >
-          Download Resume
+          Download Resume (PDF)
         </button>
       </section>
 

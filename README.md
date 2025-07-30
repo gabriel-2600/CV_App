@@ -25,9 +25,10 @@ Tech Stack:
 
 Lessons Learned:
 
-- Learned to use React, TypeScript and Tailwind
+- Learned to use React, TypeScript, and Tailwind
 - Learned proper state management in React
 - Implemented html2canvas and jspdf to make the component downloadable as pdf
 
 Credits:
-[Flaticon](https://www.flaticon.com/)
+
+- [Flaticon](https://www.flaticon.com/)
