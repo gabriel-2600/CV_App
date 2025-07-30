@@ -15,7 +15,7 @@ Features
 
 Limitations
 
-- Only one page
+- Resume can only be one page for now.
 
 Tech Stack:
 

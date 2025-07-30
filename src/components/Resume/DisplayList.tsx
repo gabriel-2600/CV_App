@@ -12,7 +12,7 @@ function DisplayList<Type>({
   renderItem,
 }: DisplayListProps<Type>) {
   return (
-    <div className="py-[10px]">
+    <div className="pt-[5px]">
       <p className="border-b-1 font-bold py-1 mb-2">{label}</p>
       <div className={optionalstyle}>
         {list.map((listItem, index) => (

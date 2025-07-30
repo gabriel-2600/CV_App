@@ -18,15 +18,15 @@ import jsPDF from "jspdf";
 
 function Resume() {
   const [details, setDetails] = useState<PersonalDetailsObject>({
-    fullName: "Gabriel Molina",
-    email: "gabrielmolina8123@gmail.com",
-    phoneNumber: "09760957997",
-    address: "Baguio City, Philippines",
+    fullName: "Juan Dela Cruz",
+    email: "juandelacruz@email.com",
+    phoneNumber: "12345678",
+    address: "City, Country",
   });
   const [educationList, setEducationList] = useState<EducationObject[]>([
     {
       id: "12345678",
-      schoolName: "Saint Louis University",
+      schoolName: "University",
       degree: "Bachelor of Science in Information Technology",
       startDate: "2021",
       endDate: "2025",
@@ -35,50 +35,26 @@ function Resume() {
   const [experienceList, setExperienceList] = useState<ExperienceObject[]>([
     {
       id: "87654321",
-      companyName: "Knowles Training Insitute",
-      position: "Website Administrator Intern",
+      companyName: "Company Name",
+      position: "Software Engineer",
       startDate: "January 2025",
       endDate: "May 2025",
       description:
-        "Developed Corporate Courses web pages for Cambodia using Elementor in WordPress, allowing users to access and enroll Knowles’ training programs. Performed quality assurance by reviewing assigned web pages, identifying UI/UX issues, and ensuring accurate documentation. Maintained WordPress websites by updating plugins and migrating Contact Form 7 forms to WPForms, ensuring reliable email and inquiry submissions for corporate courses",
-      location: "Singapore",
+        "Outlines responsibilities related to designing, developing, testing, and maintaining software applications, often involving collaboration with various teams and adhering to the software development lifecycle",
+      location: "Location",
     },
   ]);
   const [skillsList, setSkillsList] = useState<SkillsObject[]>([
     {
       id: "1",
-      skillName: "HTML",
-    },
-    {
-      id: "2",
-      skillName: "CSS",
-    },
-    {
-      id: "3",
-      skillName: "JavaScript",
-    },
-    {
-      id: "5",
       skillName: "React",
     },
     {
-      id: "6",
+      id: "2",
       skillName: "TypeScript",
     },
     {
-      id: "7",
-      skillName: "Node.js",
-    },
-    {
-      id: "8",
-      skillName: "Java",
-    },
-    {
-      id: "9",
-      skillName: "MySQL",
-    },
-    {
-      id: "10",
+      id: "3",
       skillName: "Tailwind",
     },
   ]);
@@ -108,11 +84,11 @@ function Resume() {
     console.log(pdfHeight);
 
     pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
-    pdf.save("harvard-resume.pdf");
+    pdf.save("harvard-template.pdf");
   };
 
   return (
-    <main className="flex p-[40px] gap-[20px] max-[1025px]:flex-col m">
+    <main className="flex p-[20px] gap-[20px] max-[1025px]:flex-col m">
       <section className="flex flex-col  flex-1  gap-[20px]">
         <PersonalDetails details={details} setDetails={setDetails} />
 
@@ -181,7 +157,7 @@ function Resume() {
         </button>
       </section>
 
-      <section className="max-w-[850px] max-[1025px]:self-center">
+      <section className="flex flex-col items-center max-w-[850px] max-[1025px]:self-center">
         <div className=" bg-white py-[20px] px-[60px] h-[1180px]  flex flex-col ">
           <DisplayResume
             details={details}
@@ -190,6 +166,8 @@ function Resume() {
             skillsList={skillsList}
           />
         </div>
+
+        <p className="text-gray-600 pt-2">Resume can only be one page</p>
       </section>
 
       <div style={{ position: "absolute", top: "-9999px", left: "-9999px" }}>
