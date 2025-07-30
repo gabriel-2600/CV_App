@@ -4,7 +4,7 @@ Resume Builder Web App made for the [Project: CV Application of The Odin Project
 
 Live Preview:
 
--
+- https://cv-app-tan-one.vercel.app/
 
 Features
 
